@@ -1,10 +1,11 @@
 const express = require('express')
 const hbs = require('express-handlebars')
-const { fs } = require('file-system')
+const fs = require('node:fs/promises')
 const server = express()
 const bodyParser = require('body-parser')
 
-// const bigData = require('./data/bigData.json')
+const quoteData = require('./data/quoteData.json')
+const { stringify } = require('node:querystring')
 
 // Server config
 
@@ -26,20 +27,44 @@ server.set('views', __dirname + '/views')
 // Routes
 
 server.get('/', (req, res) => {
-  res.render('home')
+  res.render('home', quoteData)
 })
 
-server.post('/', (req, res) => {
-  console.log(req.body)
-  fs.writeFile(
-    'server/data/data.json',
-    JSON.stringify(req.body, null, 2),
-    'utf-8'
-  )
+server.post('/blah', (req, res) => {
+  fs.writeFile('./server/data/test.txt', req.body.name)
+    .then((data) => {
+      console.log(data)
+      res.redirect('/')
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
 })
 
-server.get('/blah', (req, res) => {
-  res.render('home')
+server.get('/quote', (req, res) => {
+  const randomNumber = Math.floor(Math.random() * 10) + 1
+  fs.readFile('./server/data/quoteData.json', 'utf-8')
+    .then((data) => {
+      console.log(data)
+      const parsedData = JSON.parse(data)
+      const randomQuote = parsedData.quotes.find(
+        (quote) => quote.id === randomNumber
+      )
+      console.log(randomQuote)
+      res.render('quote', { quotes: [randomQuote] })
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+})
+
+server.get('/addQuote', (req, res) => {
+  res.render('addQuote')
+})
+
+server.post('/addQuote', (req, res) => {
+  console.log(req.body.name)
+  res.render('addQuote')
 })
 
 module.exports = server
