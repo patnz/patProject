@@ -63,7 +63,7 @@ server.get('/addQuote', (req, res) => {
 })
 
 server.post('/addQuote', (req, res) => {
-  console.log(req.body.name)
+  console.log(req.body)
   res.render('addQuote')
 })
 
