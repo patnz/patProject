@@ -1,8 +1,10 @@
-<form action="/addQuote" method="post">
-<label for="quoteInput">Add a quote to the database:</label>
-  <input type="text" name="quoteInput" placeholder="Enter quote">
+<section id="main-section"><form id="quote-form" action="/addQuote" method="post">
+<label for="quoteInput"><h1><i>Add a quote:</i></h1></label>
+  <input id="quoteInput" type="text" name="quoteInput" placeholder="Enter quote">
 <label for="nameInput">Who are you quoting?</label>  
-  <input type="text" name="nameInput" placeholder="Enter name">
+  <input id="nameInput" type="text" name="nameInput" placeholder="Enter name">
   <button type="submit">Submit</button>
 </form>
-{{> back}}
+
+{{> backButton}}
+</section>

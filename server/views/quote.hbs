@@ -1,6 +1,7 @@
 <section id="main-section">
-<h1>Quote of the day:</h1>
-{{#each quotes}}<h2>"{{quote}}"</h2>
+<h3><i>. Quote .</i></h3>
+{{#each quotes}}<h1 id="quote-text">"{{quote}}"</h1>
 <h3>- {{name}}</h3>{{/each}}
-{{> back}}
+{{> backButton}}
+{{> addButton}}
 </section>
