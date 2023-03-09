@@ -63,8 +63,13 @@ server.get('/addQuote', (req, res) => {
 })
 
 server.post('/addQuote', (req, res) => {
-  console.log(req.body)
-  res.render('addQuote')
+  const newQuote = {
+    id: 123,
+    name: req.body.nameInput,
+    quote: req.body.quoteInput,
+  }
+  console.log(newQuote)
+  res.render('thankYou', newQuote)
 })
 
 module.exports = server

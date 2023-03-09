@@ -1,10 +1,8 @@
-
-
-<form action="/blah" method="post">
-  <label for="formData">
-    Enter your name:
-    <input type="text" name="name">
-    {{!-- The 'name' here can be referred to as req.body.name --}}
-  </label>
-  <input type="submit" name="" value="Submit">
+<form action="/addQuote" method="post">
+<label for="quoteInput">Add a quote to the database:</label>
+  <input type="text" name="quoteInput" placeholder="Enter quote">
+<label for="nameInput">Who are you quoting?</label>  
+  <input type="text" name="nameInput" placeholder="Enter name">
+  <button type="submit">Submit</button>
 </form>
+{{> back}}
